@@ -21,4 +21,4 @@ const urlSchema = new mongoose.Schema({
     }
 },{timestamps : true});
 
-module.exports = mongoose.model("urlList",urlSchema);
+module.exports = mongoose.model("urlList",urlSchema); 

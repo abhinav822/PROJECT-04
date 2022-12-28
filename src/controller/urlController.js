@@ -8,7 +8,7 @@ const checkInputsPresent = (value) => { return (Object.keys(value).length > 0) }
 
 const isValid = function (value) {
     if (typeof value == "number" || typeof value == 'undefined' || value == 'null') { return false }
-    if (typeof value == "string" && value.trim().length == 0) {  // this line means if value is string and value is empty then it will   
+    if (typeof value == "string" && value.trim().length == 0) {  
         return false
     }
     return true
@@ -45,7 +45,9 @@ exports.urlShorter = async (req, res) => {
         }
 
         let option = {
-            method: 'get',  
+            method: 'get', 
+            url: longUrl 
+
         }
 
         let urlValidate = await axios(option)
@@ -86,13 +88,11 @@ exports.urlShorter = async (req, res) => {
 
 
 
+
+
 exports.getUrl = async function (req, res) {
     try {
         let urlCode = req.params.urlCode
-
-        if (!isValid(urlCode)) {
-            return res.status(400).send({ status: false, msg: "Please Enter Valid UrlCode" })
-        }
 
         let cacheURLData = await GET_ASYNC(`${urlCode}`)
 
